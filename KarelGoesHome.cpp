@@ -17,7 +17,6 @@ using namespace std;
 const int MIN_VALUE = 1;
 const int EXIT_NUM = 0;
 
-
 /* Given a street number and avenue number, which are 1-indexed,
  * returns the number of paths Karel can take back home that only
  * moves left or down.
