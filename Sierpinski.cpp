@@ -21,8 +21,8 @@ const int HEIGHT_OF_WINDOW = 600;
 double getValidEdgeLength();
 int getValidFractalOrder();
 void drawTriangle(GWindow& window, double edgeLength, int fractalOrder);
-void drawStartingTriangle(GWindow& window, double edgeLength, int x, int y);
-void drawSierpinskiTriangle(double edgeLength, int fractalOrder, int x, int y, GWindow& window);
+void drawStartingTriangle(GWindow& window, double edgeLength, double x, double y);
+void drawSierpinskiTriangle(double edgeLength, int fractalOrder, double x, double y, GWindow& window);
 
 int main() {
     double edgeLength = getValidEdgeLength();
@@ -54,15 +54,15 @@ int getValidFractalOrder() {
 
 void drawTriangle(GWindow& window, double edgeLength, int fractalOrder) {
     // initialize variables 
-    double heightOfTriangle = edgeLength * sqrt(3) / 2;
-    double x = window.getWidth() / 2;
-    double y = (window.getHeight() - heightOfTriangle) / 2;
+    double heightOfTriangle = edgeLength * sqrt(3) / 2.0;
+    double x = window.getWidth() / 2.0;
+    double y = (window.getHeight() - heightOfTriangle) / 2.0;
 
     drawStartingTriangle(window, edgeLength, x, y);
     drawSierpinskiTriangle(edgeLength/2, fractalOrder, x, y, window);
 }
 
-void drawStartingTriangle(GWindow& window, double edgeLength, int x, int y) {
+void drawStartingTriangle(GWindow& window, double edgeLength, double x, double y) {
     window.drawPolarLine(x, y, edgeLength, 300);
     GPoint point = window.drawPolarLine(x, y, edgeLength, 240);
     window.drawPolarLine(point.getX(), point.getY(), edgeLength, 0);
@@ -72,9 +72,9 @@ void drawStartingTriangle(GWindow& window, double edgeLength, int x, int y) {
 * Here our base case is not written seperately, cause is is better for
 * readability to see that we draw triangles until fractalOrder becomes zero
 */
-void drawSierpinskiTriangle(double edgeLength, int fractalOrder, int x, int y, GWindow& window) {
+void drawSierpinskiTriangle(double edgeLength, int fractalOrder, double x, double y, GWindow& window) {
     if (fractalOrder != 0) { 
-        int heightOfPrev = edgeLength * sqrt(3); // heigh of previous (big) triangle
+        double heightOfPrev = edgeLength * sqrt(3); // heigh of previous (big) triangle
         // draw current one
         window.drawPolarLine(x, y + heightOfPrev, edgeLength, 120);
         GPoint point = window.drawPolarLine(x, y + heightOfPrev, edgeLength, 60);
